@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func prime_factor(n int) int {
+	primes := []int{}
+	for i := 2; i <= n; i++ {
+		if n%i == 0 {
+			primes = append(primes, i)
+			n = n / i
+		}
+	}
+	sort.SliceStable(primes, func(i, j int) bool {
+		return true
+	})
+	fmt.Println(primes)
+	return primes[0]
+}
+
+// achieved but there are situations not handled
+func main() {
+	// fmt.Println(prime_factor(600851475143))
+	fmt.Println(prime_factor(1120))
+}
