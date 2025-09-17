@@ -5,7 +5,7 @@ import (
 	"sort"
 )
 
-func prime_factor(n int) int {
+func prime_factor(n int) (int, int) {
 	primes := []int{}
 	for i := 2; i <= n; i++ {
 		if n%i == 0 {
@@ -17,7 +17,7 @@ func prime_factor(n int) int {
 		return true
 	})
 	fmt.Println(primes)
-	return primes[0]
+	return primes[0], primes[1]
 }
 
 // achieved but there are situations not handled

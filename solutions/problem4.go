@@ -1,38 +1,33 @@
 package main
 
 import (
+	"fmt"
 	"slices"
 	"strconv"
 	"strings"
 )
 
-/*
-	func palindrome_factors() (first, second int) {
-		factors := []int{}
-		two_digit_factors := []int{}
-		for i := 1; i <= palindrome; i++ {
-			if palindrome%i == 0 {
-				factors = append(factors, i)
-				if i < 100 {
-					two_digit_factors = append(two_digit_factors, i)
-				}
-			}
+func palindrome() {
+	n := 0
+	n_slice := []string{}
+	n_string := strconv.Itoa(n)
+	fmt.Println(n_string)
+	n_string_split := strings.Split(n_string, "")
+	n_slice = append(n_slice, n_string_split...)
+	n_sliceCopy := make([]string, len(n_slice))
+	copy(n_sliceCopy, n_slice)
+	slices.Reverse(n_sliceCopy)
+	fmt.Println(n_sliceCopy)
+	n_string_rev := strings.Join(n_sliceCopy, "")
 
-		}
-		sort.SliceStable(two_digit_factors, func(i, j int) bool { return true })
-		fmt.Println(two_digit_factors[0], two_digit_factors[1])
-		return two_digit_factors[0], two_digit_factors[1]
+	if n_string == n_string_rev {
+		fmt.Println("This is a palindrome!")
+	} else {
+		fmt.Println("This is nowhere close to a palindrome")
 	}
-*/
-func palindrome_product() {
-	first, second := 20, 13
-	product := first * second
-	palindrome_string := strconv.Itoa(product)
-	split_palindrome := strings.Split(palindrome_string, "")
-	slices.Reverse(split_palindrome)
 
 }
 
 func main() {
-	palindrome_product()
+	palindrome()
 }
