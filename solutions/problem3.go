@@ -20,7 +20,7 @@ func prime_factor(n int) (int, int) {
 	return primes[0], primes[1]
 }
 
-// achieved but there are situations not handled
+// achieved but there are exceptions not handled
 func main() {
 	// fmt.Println(prime_factor(600851475143))
 	fmt.Println(prime_factor(1120))
