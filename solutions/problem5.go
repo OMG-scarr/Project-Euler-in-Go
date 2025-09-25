@@ -1,3 +1,5 @@
+//LCM (Least Common Multiple)
+
 package main 
 
 func main(){ 
