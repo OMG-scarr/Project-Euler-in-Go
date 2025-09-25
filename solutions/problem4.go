@@ -29,10 +29,10 @@ func palindrome_check(n int) {
 
 func largest_factors(palindrome string) {
 	pal_num, _ := strconv.Atoi(palindrome)
-	for i := 10; i < 100; i++ {
+	for i := 100; i < 1000; i++ {
 		if pal_num%i == 0 {
 			j := pal_num / i
-			if j >= 10 && j < 100 {
+			if j >= 100 && j < 1000 {
 				fmt.Printf("Largest palindrome is %d = %d * %d\n", pal_num, i, j)
 				return
 			}
@@ -44,8 +44,8 @@ func largest_factors(palindrome string) {
 func palindrome_product() {
 	palindrome_slice = []string{} // clear slice in case of multiple runs
 
-	for i := 10; i < 100; i++ {
-		for j := 10; j < 100; j++ {
+	for i := 100; i < 1000; i++ {
+		for j := 100; j < 1000; j++ {
 			product = i * j
 			palindrome_check(product)
 		}

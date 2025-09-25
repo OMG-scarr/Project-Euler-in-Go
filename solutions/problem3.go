@@ -22,6 +22,6 @@ func prime_factor(n int) (int, int) {
 
 // achieved but there are exceptions not handled
 func main() {
-	// fmt.Println(prime_factor(600851475143))
-	fmt.Println(prime_factor(1120))
+	fmt.Println(prime_factor(600851475143))
+	// fmt.Println(prime_factor(1120))
 }
