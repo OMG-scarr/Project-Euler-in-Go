@@ -2,32 +2,40 @@ package main
 
 import (
 	"fmt"
-	"slices"
 	"strconv"
 	"strings"
 )
 
-func palindrome() {
-	n := 0
-	n_slice := []string{}
+func palindrome(n int) bool {
 	n_string := strconv.Itoa(n)
-	fmt.Println(n_string)
 	n_string_split := strings.Split(n_string, "")
-	n_slice = append(n_slice, n_string_split...)
-	n_sliceCopy := make([]string, len(n_slice))
-	copy(n_sliceCopy, n_slice)
-	slices.Reverse(n_sliceCopy)
-	fmt.Println(n_sliceCopy)
-	n_string_rev := strings.Join(n_sliceCopy, "")
-
-	if n_string == n_string_rev {
-		fmt.Println("This is a palindrome!")
-	} else {
-		fmt.Println("This is nowhere close to a palindrome")
+	n_sliceCopy := make([]string, len(n_string_split))
+	copy(n_sliceCopy, n_string_split)
+	for i, j := 0, len(n_sliceCopy)-1; i < j; i, j = i+1, j-1 {
+		n_sliceCopy[i], n_sliceCopy[j] = n_sliceCopy[j], n_sliceCopy[i]
 	}
-
+	n_string_rev := strings.Join(n_sliceCopy, "")
+	if n_string == n_string_rev {
+		return true
+	}
+	return false
 }
 
 func main() {
-	palindrome()
+	
+	palindrome_Product := 0
+	a, b := 0, 0
+
+	// Ascending order loops for factors
+	for i := 100; i < 1000; i++ {
+		for j := i; j < 1000; j++ {
+			product := i * j
+			if palindrome(product) && product > palindromeMax {
+				palindrome_Product = product
+				a = i
+				b = j
+			}
+		}
+	}
+	fmt.Printf("Largest palindrome is %d = %d * %d\n", palindromeMax, a, b)
 }
