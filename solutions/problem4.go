@@ -2,40 +2,72 @@ package main
 
 import (
 	"fmt"
+	"slices"
 	"strconv"
 	"strings"
 )
 
-func palindrome(n int) bool {
+var product int = 0
+var palindrome_slice = []string{}
+
+func palindrome_check(n int) {
+	n_slice := []string{}
+
 	n_string := strconv.Itoa(n)
 	n_string_split := strings.Split(n_string, "")
-	n_sliceCopy := make([]string, len(n_string_split))
-	copy(n_sliceCopy, n_string_split)
-	for i, j := 0, len(n_sliceCopy)-1; i < j; i, j = i+1, j-1 {
-		n_sliceCopy[i], n_sliceCopy[j] = n_sliceCopy[j], n_sliceCopy[i]
-	}
+	n_slice = append(n_slice, n_string_split...)
+	n_sliceCopy := make([]string, len(n_slice))
+	copy(n_sliceCopy, n_slice)
+	slices.Reverse(n_sliceCopy)
+
 	n_string_rev := strings.Join(n_sliceCopy, "")
+
 	if n_string == n_string_rev {
-		return true
+		palindrome_slice = append(palindrome_slice, n_string)
 	}
-	return false
 }
 
-func main() {
-	
-	palindrome_Product := 0
-	a, b := 0, 0
-
-	// Ascending order loops for factors
-	for i := 100; i < 1000; i++ {
-		for j := i; j < 1000; j++ {
-			product := i * j
-			if palindrome(product) && product > palindromeMax {
-				palindrome_Product = product
-				a = i
-				b = j
+func largest_factors(palindrome string) {
+	pal_num, _ := strconv.Atoi(palindrome)
+	for i := 10; i < 100; i++ {
+		if pal_num%i == 0 {
+			j := pal_num / i
+			if j >= 10 && j < 100 {
+				fmt.Printf("Largest palindrome is %d = %d * %d\n", pal_num, i, j)
+				return
 			}
 		}
 	}
-	fmt.Printf("Largest palindrome is %d = %d * %d\n", palindromeMax, a, b)
+	fmt.Printf("No 2-digit factors found for palindrome %s\n", palindrome)
+}
+
+func palindrome_product() {
+	palindrome_slice = []string{} // clear slice in case of multiple runs
+
+	for i := 10; i < 100; i++ {
+		for j := 10; j < 100; j++ {
+			product = i * j
+			palindrome_check(product)
+		}
+	}
+
+	if len(palindrome_slice) == 0 {
+		fmt.Println("No palindromes found")
+		return
+	}
+
+	// Find the largest palindrome (as number)
+	max_palindrome := 0
+	for _, s := range palindrome_slice {
+		n, _ := strconv.Atoi(s)
+		if n > max_palindrome {
+			max_palindrome = n
+		}
+	}
+	largest_palindrome := strconv.Itoa(max_palindrome)
+	largest_factors(largest_palindrome)
+}
+
+func main() {
+	palindrome_product()
 }
