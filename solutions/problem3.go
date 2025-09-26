@@ -8,7 +8,7 @@ import (
 func prime_factor(n int) (int, int) {
 	primes := []int{}
 	for i := 2; i <= n; i++ {
-		if n%i == 0 {
+		for n%i == 0 {
 			primes = append(primes, i)
 			n = n / i
 		}
