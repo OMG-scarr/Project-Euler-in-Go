@@ -4,7 +4,6 @@ package main
 
 import "fmt"
 
-// Returns a slice of prime factors for n
 func prime_factors(n int) []int {
 	var factors []int
 	for i := 2; i <= n; i++ {
@@ -16,7 +15,7 @@ func prime_factors(n int) []int {
 	return factors
 }
 
-// Helper: counts the occurrences of each prime in a slice
+
 func count_factors(factors []int) map[int]int {
 	counts := make(map[int]int)
 	for _, f := range factors {
@@ -25,7 +24,6 @@ func count_factors(factors []int) map[int]int {
 	return counts
 }
 
-// Computes the LCM from the prime factors of all numbers 2..n
 func lcm_from_factors(n int) int {
 	max_counts := make(map[int]int)
 	for i := 2; i <= n; i++ {
