@@ -20,7 +20,6 @@ func nthPrimeNumber(x int) int {
 		}
 		n++
 	}
-
 	return primes[x-1]
 }
 
